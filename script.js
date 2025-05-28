@@ -1,22 +1,16 @@
-// Configurare Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSy...",
-  authDomain: "nume-proiect.firebaseapp.com",
-  projectId: "nume-proiect",
-  storageBucket: "nume-proiect.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef123456"
-};
+// Salvează parola pe server
+async function savePassword(email, password) {
+  const response = await fetch('http://localhost:3000/save-password', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  });
+  return await response.text();
+}
 
-// Initializează Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-
-// Înregistrare nou utilizator
-auth.createUserWithEmailAndPassword(email, password)
-  .then(() => { /* Redirecționează către pagina principală */ })
-  .catch(err => alert("Eroare: " + err.message));
-
-// Autentificare
-auth.signInWithEmailAndPassword(email, password)
-  .then(() => { /* Utilizator logat */ });
+// Încarcă toate parolele
+async function loadPasswords() {
+  const response = await fetch('http://localhost:3000/get-passwords');
+  const data = await response.json();
+  console.log("TOATE PAROLELE:", data);
+}
