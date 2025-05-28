@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <nav>
+        <nav>dfdfd
             <div class="user-info">
                 <span id="displayUsername"></span>
                 <button id="logoutBtn">Deconectare</button>
